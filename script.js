@@ -3,16 +3,23 @@ let accessKey = "sRMN4EXG-Rqtg5xkgnFvvxRbXpTvvo3jDMkqOy56nJY";
 
 let btn2 = document.getElementById("show-more-button");
 btn2.style.display = "none";
+let container = document.querySelector(".resultContainer");
 let page = 1;
 
-async function searchImage(event) {
-  let container = document.querySelector(".resultContainer");
+function searchForm(event) {
+  event.preventDefault();
+  container.innerHTML = "";
+  searchImage();
+}
+
+function searchImage(event) {
   if (page === 1) {
+    // event.preventDefault();
     container.innerHTML = "";
   }
   let inputData = document.querySelector("#search").value;
   // console.log(inputData);
-  await fetch(
+  fetch(
     `https://api.unsplash.com/search/photos?page=${page}&query=${inputData}&client_id=${accessKey}`
   )
     .then((response) => response.json())
@@ -24,22 +31,19 @@ async function searchImage(event) {
 
         let div = document.createElement("div");
         let image = document.createElement("img");
+        let para = document.createElement("p");
+        para.innerText = `${imageDesc}`;
         image.setAttribute("src", imageUrl);
         // console.log(image.getAttribute("src"));
-        div.append(image, imageDesc);
+        div.append(image, para);
         container.append(div);
 
         btn2.innerText = "click for more";
         btn2.style.display = "block";
         container.appendChild(btn2);
-        page++;
       });
     });
-  btn2.addEventListener("click", () => {
-    // event.preventDefault();
-    searchImage();
-    console.log("hiel");
-  });
+  page++;
 
   // .catch((error)=>{
   //     alert("Error is occurred while loading page..")
@@ -47,8 +51,9 @@ async function searchImage(event) {
 
   // .then(data=>console.log(data))
 }
-// let submitBtn=document.getElementsByName("form");
-// submitBtn.addEventListener("submit", (event) => {
-//     event.preventDefault();
-//     searchImage();
-//   });
+
+btn2.addEventListener("click", (event) => {
+  event.preventDefault();
+  searchImage();
+  console.log("hiel");
+});
