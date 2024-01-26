@@ -8,14 +8,21 @@
   </head>
   <body>
     <div class="staticPart">
-      <h1>Image Search App</h1>
+      <h1 id="element">Image Search App</h1>
       <form onclick="searchForm(event)">
         <input type="text" id="search" placeholder="Search for photo" />
         <button type="submit">Search</button>
       </form>
     </div>
     <div class="resultContainer"></div>
-    <button id="show-more-button">show More</button>
+    <div class="btn2"><button id="show-more-button">show More</button></div>
     <script src="./script.js"></script>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script>
+      var typed = new Typed("#element", {
+        strings: ["Search Images", "Enjoy The app", "Image Search App"],
+        typeSpeed: 50,
+      });
+    </script>
   </body>
 </html>

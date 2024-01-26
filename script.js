@@ -38,9 +38,9 @@ function searchImage(event) {
         div.append(image, para);
         container.append(div);
 
-        btn2.innerText = "click for more";
+        // btn2.innerText = "click for more";
         btn2.style.display = "block";
-        container.appendChild(btn2);
+        // container.appendChild(btn2);
       });
     });
   page++;
@@ -55,5 +55,5 @@ function searchImage(event) {
 btn2.addEventListener("click", (event) => {
   event.preventDefault();
   searchImage();
-  console.log("hiel");
+  // console.log("hiel");
 });
